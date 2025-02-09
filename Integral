@@ -8,6 +8,7 @@ public class test2 {
 	    public static String integrate(String expr) {
 	        List<String> terms = splitTerms(expr);
 	        List<String> integratedTerms = new ArrayList<>();
+		// 个项积分
 	        for (String term : terms) {
 	            String integratedTerm = integrateTerm(term);
 	            if (!integratedTerm.isEmpty()) {
@@ -41,7 +42,7 @@ public class test2 {
 	        terms.add(expr.substring(start));
 	        return terms;
 	    }
-
+	    //单项积分
 	    private static String integrateTerm(String term) {
 	        if (term.isEmpty()) return "";
 
@@ -83,7 +84,7 @@ public class test2 {
 	        int common = gcd(coeff, denominator);
 	        int numerator = coeff / common;
 	        denominator /= common;
-
+		//特殊情况
 	        if (denominator < 0) {
 	            numerator *= -1;
 	            denominator *= -1;
