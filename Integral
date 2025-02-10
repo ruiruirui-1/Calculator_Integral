@@ -81,29 +81,35 @@ public class test2 {
 	    }
 
 	    private static String formatIntegratedTerm(int coeff, int denominator, int exponent) {
-	        int common = gcd(coeff, denominator);
+	        iint common = gcd(coeff, denominator);
 	        int numerator = coeff / common;
 	        denominator /= common;
-		//特殊情况
+
+	        // 确保分母始终为正
 	        if (denominator < 0) {
 	            numerator *= -1;
 	            denominator *= -1;
 	        }
 
-	        StringBuilder sd = new StringBuilder();
+	        StringBuilder sb = new StringBuilder();
 	        String xPart = exponent == 1 ? "x" : "x^" + exponent;
 
+	        // 分母为1时的简化形式
 	        if (denominator == 1) {
 	            if (numerator == 1) return xPart;
 	            if (numerator == -1) return "-" + xPart;
 	            return numerator + xPart;
 	        }
 
-	        String numPart = switch (numerator) {
-	            case 1 -> xPart;
-	            case -1 -> "-" + xPart;
-	            default -> numerator + xPart;
-	        };
+	        
+	        String numPart;
+	        if (numerator == 1) {
+	            numPart = xPart;
+	        } else if (numerator == -1) {
+	            numPart = "-" + xPart;
+	        } else {
+	            numPart = numerator + xPart;
+	        }
 
 	        return "(" + numPart + ")/" + denominator;
 	    }
